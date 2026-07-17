@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&amp;family=Nunito:wght@700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#111813; }
+  * { box-sizing:border-box; }
+  a { color:#9CF35A; text-decoration:none; }
+  a:hover { color:#C4FF8A; }
+  ::-webkit-scrollbar { width:8px; height:8px; }
+  ::-webkit-scrollbar-track { background:rgba(0,0,0,.35); border-radius:8px; }
+  ::-webkit-scrollbar-thumb { background:#3E7A2A; border-radius:8px; }
+</style>
+</helmet>
+
+<div style="min-height:100vh; background:radial-gradient(1200px 700px at 50% 10%, #18251A 0%, #0F1611 60%, #0B100C 100%); display:flex; flex-direction:column; align-items:center; padding:34px 20px 60px; gap:26px; font-family:Nunito, sans-serif;">
+
+  <div style="text-align:center;">
+    <div style="font-family:'Lilita One'; font-size:32px; color:#fff; letter-spacing:1px; text-shadow:2.5px 0 0 #14520A, -2.5px 0 0 #14520A, 0 2.5px 0 #14520A, 0 -2.5px 0 #14520A, 1.8px 1.8px 0 #14520A, -1.8px -1.8px 0 #14520A, 1.8px -1.8px 0 #14520A, -1.8px 1.8px 0 #14520A, 0 5px 0 #14520A;">MOBILE LAYOUTS</div>
+    <div style="font-weight:800; font-size:14px; color:#89B98A; margin-top:8px;">Same system, rebuilt for touch — 48px+ targets, icon-first tabs, single-scroll content. Not a scaled-down desktop.</div>
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; gap:28px; justify-content:center; align-items:flex-start;">
+
+    <!-- ================= SHOP MOBILE ================= -->
+    <div data-screen-label="Mobile / Shop" style="width:390px; background:#0B2210; border:3px solid #86E23A; border-radius:24px; box-shadow:0 0 0 4px #06180A, 0 24px 50px rgba(0,0,0,.55); overflow:hidden; display:flex; flex-direction:column; height:780px;">
+      <!-- header -->
+      <div style="background:linear-gradient(105deg, #AEEF44 0%, #63CE26 60%, #3FAF18 100%); border-bottom:4px solid #06180A; padding:14px 14px 12px; position:relative;">
+        <div style="position:absolute; inset:0; background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2234%22 height=%2234%22%3E%3Crect x=%225%22 y=%225%22 width=%2224%22 height=%2224%22 rx=%226%22 fill=%22%23000000%22 fill-opacity=%220.07%22/%3E%3C/svg%3E'); pointer-events:none;"></div>
+        <div style="display:flex; align-items:center; gap:10px; position:relative;">
+          <div style="font-family:'Lilita One'; font-size:27px; color:#fff; letter-spacing:1px; text-shadow:2.5px 0 0 #14520A, -2.5px 0 0 #14520A, 0 2.5px 0 #14520A, 0 -2.5px 0 #14520A, 1.8px 1.8px 0 #14520A, -1.8px -1.8px 0 #14520A, 1.8px -1.8px 0 #14520A, -1.8px 1.8px 0 #14520A, 0 4.5px 0 #14520A;">SHOP</div>
+          <div style="flex:1;"></div>
+          <div style="display:flex; align-items:center; background:#08300F; border:2.5px solid #2F7D18; border-radius:11px; padding:3px 3px 3px 12px; gap:9px;">
+            <span style="color:#9CF35A; font-weight:900; font-size:15px;">$125,430</span>
+            <div style="width:30px; height:30px; background:linear-gradient(180deg,#A9F252,#5FC71F); border:2px solid #1E5A0C; border-bottom-width:4px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:17px; text-shadow:0 1.5px 0 #2C6E10;">+</div>
+          </div>
+          <div style="width:44px; height:44px; background:linear-gradient(180deg,#FF6A50,#D92E1E); border:2.5px solid #5E0E06; border-bottom-width:6px; border-radius:11px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:inset 0 2px 0 rgba(255,255,255,.35);" style-active="transform:translateY(2px); border-bottom-width:2.5px;">
+            <span style="font-family:'Lilita One'; font-size:19px; color:#fff; text-shadow:0 2px 0 #7A170B;">X</span>
+          </div>
+        </div>
+      </div>
+      <!-- tabs: icon-first, equal width -->
+      <div style="display:flex; gap:8px; padding:12px 12px 4px;">
+        <sc-for list="{{ shopTabs }}" as="t" hint-placeholder-count="4">
+          <div onClick="{{ t.onClick }}" style="{{ t.style }}" style-active="transform:translateY(2px); border-bottom-width:3px;">
+            <span style="font-size:19px;">{{ t.icon }}</span>
+            <span style="{{ t.labelStyle }}">{{ t.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <!-- content -->
+      <div style="flex:1; overflow-y:auto; padding:12px 12px 16px; display:flex; flex-direction:column; gap:12px;">
+        <sc-if value="{{ isFeatured }}" hint-placeholder-val="{{ true }}">
+          <div style="background:#0E2A15; border:2.5px solid #06180A; border-radius:16px; padding:14px;">
+            <div style="font-weight:900; font-size:15px; letter-spacing:.8px; color:#fff; margin-bottom:12px; display:flex; align-items:center; gap:9px;"><span style="width:5px; height:16px; background:#8FE63A; border-radius:3px;"></span>FEATURED ITEMS</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <sc-for list="{{ featuredCards }}" as="c" hint-placeholder-count="3">
+                <div style="{{ c.style }}" style-active="transform:translateY(2px)">
+                  <div style="{{ c.artStyle }}"></div>
+                  <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:4px; justify-content:center;">
+                    <div style="{{ c.badgeStyle }}">{{ c.badge }}</div>
+                    <div style="font-weight:900; font-size:15.5px; color:#fff; text-shadow:0 2px 0 rgba(0,0,0,.3);">{{ c.name }}</div>
+                  </div>
+                  <div style="align-self:center; background:linear-gradient(180deg,#9BF04F,#5FC71F); border:2.5px solid #1E5A0C; border-radius:10px; padding:8px 14px; display:flex; gap:6px; align-items:center; color:#fff; font-weight:900; font-size:14px; text-shadow:0 1.5px 0 #2C6E10; box-shadow:inset 0 2px 0 rgba(255,255,255,.4), 0 2.5px 0 #1E5A0C; flex-shrink:0;">
+                    <span style="width:16px; height:11px; background:#2E7A0F; border-radius:3px; border:1.5px solid #1E5A0C;"></span>
+                    <span>{{ c.price }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:#0E2A15; border:2.5px solid #06180A; border-radius:16px; padding:14px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+              <div style="font-weight:900; font-size:15px; letter-spacing:.8px; color:#fff; display:flex; align-items:center; gap:9px;"><span style="width:5px; height:16px; background:#FF8A3C; border-radius:3px;"></span>DAILY DEALS</div>
+              <div style="background:#06180A; border:2px solid #1B4212; border-radius:8px; padding:4px 10px; color:#FFC93C; font-weight:900; font-size:12px;">⏱ 4h 32m</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:9px;">
+              <sc-for list="{{ dailyDeals }}" as="d" hint-placeholder-count="3">
+                <div style="background:#0A2010; border:2.5px solid #1B4212; border-radius:13px; padding:11px 12px; display:flex; align-items:center; gap:11px; min-height:56px;" style-active="transform:translateY(2px)">
+                  <div style="width:40px; height:40px; background:#123A1D; border:2px solid #1B4212; border-radius:9px; flex-shrink:0; box-shadow:inset 0 2px 5px rgba(0,0,0,.4);"></div>
+                  <div style="flex:1; min-width:0;">
+                    <div style="font-weight:900; font-size:13.5px; color:#fff;">{{ d.name }}</div>
+                    <div style="font-weight:800; font-size:12.5px; color:#9CF35A;">{{ d.sub }}</div>
+                  </div>
+                  <div style="background:linear-gradient(180deg,#9BF04F,#5FC71F); border:2.5px solid #1E5A0C; border-radius:10px; padding:7px 12px; display:flex; gap:5px; align-items:center; color:#fff; font-weight:900; font-size:13px; text-shadow:0 1.5px 0 #2C6E10; box-shadow:inset 0 2px 0 rgba(255,255,255,.4), 0 2px 0 #1E5A0C; flex-shrink:0;">
+                    <span style="width:15px; height:10px; background:#2E7A0F; border-radius:3px; border:1.5px solid #1E5A0C;"></span>
+                    <span>{{ d.price }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:#0E2A15; border:2.5px solid #06180A; border-radius:16px; padding:14px;">
+            <div style="font-weight:900; font-size:15px; letter-spacing:.8px; color:#fff; margin-bottom:12px; display:flex; align-items:center; gap:9px;"><span style="width:5px; height:16px; background:#F4D93C; border-radius:3px;"></span>BEST VALUE</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+              <sc-for list="{{ bestValue }}" as="p" hint-placeholder-count="4">
+                <div style="{{ p.style }}" style-active="transform:translateY(2px)">
+                  <sc-if value="{{ p.badge }}" hint-placeholder-val="{{ false }}">
+                    <div style="{{ p.badgeStyle }}">{{ p.badge }}</div>
+                  </sc-if>
+                  <div style="font-weight:900; font-size:13.5px; color:#fff; text-align:center; text-shadow:0 1.5px 0 rgba(0,0,0,.3);">{{ p.name }}</div>
+                  <div style="font-weight:900; font-size:14px; color:#9CF35A; text-align:center; text-shadow:0 1.5px 0 rgba(0,0,0,.35); margin-top:4px;">{{ p.cash }}</div>
+                  <div style="display:flex; justify-content:center; margin-top:9px;">
+                    <div style="background:linear-gradient(180deg,#9BF04F,#5FC71F); border:2.5px solid #1E5A0C; border-radius:10px; padding:6px 13px; display:flex; gap:5px; align-items:center; color:#fff; font-weight:900; font-size:13px; text-shadow:0 1.5px 0 #2C6E10; box-shadow:inset 0 2px 0 rgba(255,255,255,.4), 0 2px 0 #1E5A0C;">
+                      <span style="width:15px; height:10px; background:#2E7A0F; border-radius:3px; border:1.5px solid #1E5A0C;"></span>
+                      <span>{{ p.price }}</span>
+                    </div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isOtherTab }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#0A2010; border:2px dashed #2C5A20; border-radius:14px; padding:30px 20px; text-align:center;">
+            <div style="font-weight:900; font-size:15px; color:#fff;">{{ otherTabLabel }}</div>
+            <div style="font-weight:800; font-size:13px; color:#89B98A; margin-top:6px; line-height:1.5;">Same card recipes as desktop, stacked in 1–2 columns with 48px+ touch targets. See the desktop mockup for full content.</div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <!-- ================= REBIRTH MOBILE ================= -->
+    <div data-screen-label="Mobile / Rebirth" style="width:390px; background:#150A26; border:3px solid #C879F5; border-radius:24px; box-shadow:0 0 0 4px #12061F, 0 24px 50px rgba(0,0,0,.55); overflow:hidden; display:flex; flex-direction:column; height:780px;">
+      <div style="background:linear-gradient(105deg, #D48BFF 0%, #A44CEC 60%, #7F2ECB 100%); border-bottom:4px solid #12061F; padding:14px; position:relative;">
+        <div style="position:absolute; inset:0; background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2234%22 height=%2234%22%3E%3Crect x=%225%22 y=%225%22 width=%2224%22 height=%2224%22 rx=%226%22 fill=%22%23000000%22 fill-opacity=%220.07%22/%3E%3C/svg%3E'); pointer-events:none;"></div>
+        <div style="display:flex; align-items:center; gap:10px; position:relative;">
+          <div style="font-family:'Lilita One'; font-size:27px; color:#fff; letter-spacing:1px; text-shadow:2.5px 0 0 #4A1177, -2.5px 0 0 #4A1177, 0 2.5px 0 #4A1177, 0 -2.5px 0 #4A1177, 1.8px 1.8px 0 #4A1177, -1.8px -1.8px 0 #4A1177, 1.8px -1.8px 0 #4A1177, -1.8px 1.8px 0 #4A1177, 0 4.5px 0 #4A1177;">REBIRTH</div>
+          <div style="flex:1;"></div>
+          <div style="width:44px; height:44px; background:linear-gradient(180deg,#FF6A50,#D92E1E); border:2.5px solid #5E0E06; border-bottom-width:6px; border-radius:11px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:inset 0 2px 0 rgba(255,255,255,.35);" style-active="transform:translateY(2px); border-bottom-width:2.5px;">
+            <span style="font-family:'Lilita One'; font-size:19px; color:#fff; text-shadow:0 2px 0 #7A170B;">X</span>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1; overflow-y:auto; padding:16px 14px 18px; display:flex; flex-direction:column; gap:14px; align-items:stretch;">
+        <div style="display:flex; justify-content:center; position:relative; padding:8px 0;">
+          <div style="position:absolute; width:200px; height:200px; top:50%; left:50%; transform:translate(-50%,-50%); background:radial-gradient(circle, rgba(196,104,245,.35) 0%, rgba(196,104,245,0) 70%); border-radius:50%;"></div>
+          <div style="width:170px; height:170px; position:relative;">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="rebirth-mascot-mobile" shape="rounded" radius="20" placeholder="Mascot render" hint-size="170px,170px" style="width:170px; height:170px;"></x-import>
+          </div>
+        </div>
+        <div style="font-weight:900; font-size:16px; color:#fff; text-align:center; line-height:1.5; text-shadow:0 2px 0 rgba(0,0,0,.35); padding:0 12px;">Rebirth to earn permanent boosts and become stronger!</div>
+        <div style="background:#1F1136; border:2.5px solid #3D2263; border-radius:15px; padding:14px; display:flex; align-items:center; justify-content:center; gap:14px;">
+          <span style="font-weight:900; font-size:14px; letter-spacing:1px; color:#C989F7;">CURRENT REBIRTHS</span>
+          <span style="font-size:20px;">🔁</span>
+          <span style="font-family:'Lilita One'; font-size:30px; color:#fff; text-shadow:2px 0 0 #12061F, -2px 0 0 #12061F, 0 2px 0 #12061F, 0 -2px 0 #12061F, 0 4px 0 #12061F;">3</span>
+        </div>
+        <div style="background:#1F1136; border:2.5px solid #3D2263; border-radius:15px; padding:16px 14px;">
+          <div style="font-weight:900; font-size:14px; letter-spacing:1px; color:#C989F7; text-align:center; margin-bottom:12px;">NEXT REBIRTH REWARDS</div>
+          <div style="display:flex; flex-direction:column; gap:9px;">
+            <sc-for list="{{ rewards }}" as="rw" hint-placeholder-count="3">
+              <div style="display:flex; align-items:center; gap:13px; background:#170C2B; border:2px solid #2E1A4E; border-radius:12px; padding:11px 14px; min-height:56px;">
+                <div style="{{ rw.iconStyle }}">{{ rw.icon }}</div>
+                <div style="font-weight:900; font-size:14.5px; color:#fff; flex:1;">{{ rw.label }}</div>
+                <div style="{{ rw.valStyle }}">{{ rw.value }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:linear-gradient(180deg,#C46BFB,#8F35DE); border:3px solid #4A1177; border-bottom-width:8px; border-radius:16px; padding:15px; display:flex; align-items:center; justify-content:center; gap:12px; cursor:pointer; box-shadow:inset 0 3px 0 rgba(255,255,255,.35); min-height:60px;" style-active="transform:translateY(3px); border-bottom-width:4px;">
+          <span style="font-family:'Lilita One'; font-size:22px; color:#fff; letter-spacing:1.2px; text-shadow:1.8px 0 0 #4A1177, -1.8px 0 0 #4A1177, 0 1.8px 0 #4A1177, 0 -1.8px 0 #4A1177, 0 3.5px 0 #4A1177;">REBIRTH</span>
+          <span style="background:rgba(0,0,0,.28); border-radius:9px; padding:3px 12px; color:#fff; font-weight:900; font-size:16px;">🔁 100</span>
+        </div>
+        <div style="font-weight:800; font-size:12.5px; color:#A78BC4; text-align:center; line-height:1.5;">Rebirthing will reset your progress but grant you permanent boosts.</div>
+      </div>
+    </div>
+
+    <!-- ================= SETTINGS MOBILE ================= -->
+    <div data-screen-label="Mobile / Settings" style="width:390px; background:#0B2210; border:3px solid #86E23A; border-radius:24px; box-shadow:0 0 0 4px #06180A, 0 24px 50px rgba(0,0,0,.55); overflow:hidden; display:flex; flex-direction:column; height:780px;">
+      <div style="background:linear-gradient(105deg, #AEEF44 0%, #63CE26 60%, #3FAF18 100%); border-bottom:4px solid #06180A; padding:14px; position:relative;">
+        <div style="position:absolute; inset:0; background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2234%22 height=%2234%22%3E%3Crect x=%225%22 y=%225%22 width=%2224%22 height=%2224%22 rx=%226%22 fill=%22%23000000%22 fill-opacity=%220.07%22/%3E%3C/svg%3E'); pointer-events:none;"></div>
+        <div style="display:flex; align-items:center; gap:10px; position:relative;">
+          <div style="font-family:'Lilita One'; font-size:27px; color:#fff; letter-spacing:1px; text-shadow:2.5px 0 0 #14520A, -2.5px 0 0 #14520A, 0 2.5px 0 #14520A, 0 -2.5px 0 #14520A, 1.8px 1.8px 0 #14520A, -1.8px -1.8px 0 #14520A, 1.8px -1.8px 0 #14520A, -1.8px 1.8px 0 #14520A, 0 4.5px 0 #14520A;">SETTINGS</div>
+          <div style="flex:1;"></div>
+          <div style="width:44px; height:44px; background:linear-gradient(180deg,#FF6A50,#D92E1E); border:2.5px solid #5E0E06; border-bottom-width:6px; border-radius:11px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:inset 0 2px 0 rgba(255,255,255,.35);" style-active="transform:translateY(2px); border-bottom-width:2.5px;">
+            <span style="font-family:'Lilita One'; font-size:19px; color:#fff; text-shadow:0 2px 0 #7A170B;">X</span>
+          </div>
+        </div>
+      </div>
+      <!-- horizontal icon tabs replace the sidebar -->
+      <div style="display:flex; gap:8px; padding:12px 12px 4px;">
+        <sc-for list="{{ settingsTabs }}" as="t" hint-placeholder-count="5">
+          <div onClick="{{ t.onClick }}" style="{{ t.style }}" style-active="transform:translateY(2px); border-bottom-width:3px;">
+            <span style="font-size:19px;">{{ t.icon }}</span>
+            <span style="{{ t.labelStyle }}">{{ t.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="flex:1; overflow-y:auto; padding:12px 12px 16px; display:flex; flex-direction:column; gap:9px;">
+        <sc-if value="{{ isGeneral }}" hint-placeholder-val="{{ true }}">
+          <sc-for list="{{ generalRows }}" as="row" hint-placeholder-count="8">
+            <div style="background:#0E2A15; border:2.5px solid #06180A; border-radius:14px; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:60px;">
+              <span style="font-weight:900; font-size:14px; color:#fff; line-height:1.35;">{{ row.label }}</span>
+              <div onClick="{{ row.onToggle }}" style="{{ row.trackStyle }}" style-active="transform:scale(.96)">
+                <span style="{{ row.onLabelStyle }}">{{ row.stateLabel }}</span>
+                <div style="{{ row.knobStyle }}"></div>
+              </div>
+            </div>
+          </sc-for>
+        </sc-if>
+        <sc-if value="{{ isAudio }}" hint-placeholder-val="{{ false }}">
+          <sc-for list="{{ audioSliders }}" as="s" hint-placeholder-count="5">
+            <div style="background:#0E2A15; border:2.5px solid #06180A; border-radius:14px; padding:13px 14px;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                <span style="font-weight:900; font-size:14px; color:#fff;">{{ s.label }}</span>
+                <span style="color:#9CF35A; font-weight:900; font-size:14px;">{{ s.pctLabel }}</span>
+              </div>
+              <div onClick="{{ s.onClick }}" style="height:22px; background:#06180A; border:2px solid #1B4212; border-radius:11px; position:relative; cursor:pointer;">
+                <div style="{{ s.fillStyle }}"></div>
+                <div style="{{ s.knobStyle }}"></div>
+              </div>
+            </div>
+          </sc-for>
+        </sc-if>
+        <sc-if value="{{ isOtherSettings }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#0A2010; border:2px dashed #2C5A20; border-radius:14px; padding:30px 20px; text-align:center;">
+            <div style="font-weight:900; font-size:15px; color:#fff;">{{ otherSettingsLabel }}</div>
+            <div style="font-weight:800; font-size:13px; color:#89B98A; margin-top:6px; line-height:1.5;">Same rows as desktop — 60px min height, controls right-aligned, one column. See the desktop mockup for full content.</div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+  </div>
+  <div style="font-weight:800; font-size:12.5px; color:#4E6350; text-align:center; max-width:640px;">Tabs go icon-over-label and full-width; the Settings sidebar becomes a horizontal tab strip; cards stack in 1–2 columns. Companion to <a href="Game UI System.dc.html">the desktop mockup</a>.</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    shopTab: 'featured',
+    settingsTab: 'general',
+    toggles: { dmg: true, others: true, names: true, pets: true, hideOthers: false, shake: true, camfx: true, popups: true },
+    sliders: { master: 80, music: 75, sfx: 60, ui: 70, ambient: 50 }
+  };
+
+  vTab(sel, colors, extra) {
+    const base = sel ? {
+      background: 'linear-gradient(180deg,' + colors[0] + ',' + colors[1] + ')',
+      border: '3px solid ' + colors[2], color: '#fff',
+      boxShadow: 'inset 0 2px 0 rgba(255,255,255,.35)', textShadow: '0 1.5px 0 rgba(0,0,0,.3)'
+    } : {
+      background: '#0E2A15', border: '3px solid #06180A', color: '#A9CBA6',
+      boxShadow: 'inset 0 2px 0 rgba(255,255,255,.05)'
+    };
+    return Object.assign({
+      flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center',
+      justifyContent: 'center', gap: '3px', minHeight: '58px', borderRadius: '12px',
+      borderBottomWidth: '6px', cursor: 'pointer', userSelect: 'none',
+      fontFamily: 'Nunito, sans-serif', fontWeight: 900,
+      transition: 'filter .12s, transform .06s'
+    }, base, extra || {});
+  }
+  toggleParts(on, key) {
+    const self = this;
+    return {
+      trackStyle: {
+        width: '78px', height: '38px', borderRadius: '10px', position: 'relative',
+        cursor: 'pointer', flexShrink: 0, transition: 'background .15s',
+        border: '2.5px solid ' + (on ? '#1E5A0C' : '#3A4A3C'),
+        background: on ? 'linear-gradient(180deg,#8FE63A,#5FC71F)' : 'linear-gradient(180deg,#4A5A4C,#39463B)',
+        boxShadow: 'inset 0 2px 0 rgba(255,255,255,.25)'
+      },
+      knobStyle: {
+        position: 'absolute', top: '3px', width: '27px', height: '27px',
+        borderRadius: '7px', transition: 'left .15s', left: on ? '43px' : '4px',
+        background: 'linear-gradient(180deg,#FFFFFF,#D8E4D6)',
+        border: '2px solid rgba(0,0,0,.35)', boxShadow: '0 2px 0 rgba(0,0,0,.25)'
+      },
+      onLabelStyle: {
+        position: 'absolute', top: '50%', transform: 'translateY(-50%)',
+        left: on ? '9px' : '36px', fontWeight: 900, fontSize: '11.5px',
+        color: on ? '#1E5A0C' : '#C4CFC5', transition: 'left .15s'
+      },
+      stateLabel: on ? 'ON' : 'OFF',
+      onToggle: function () {
+        self.setState(function (s) {
+          const t = Object.assign({}, s.toggles);
+          t[key] = !t[key];
+          return { toggles: t };
+        });
+      }
+    };
+  }
+
+  renderVals() {
+    const self = this;
+    const s = this.state;
+    const labelStyle = { fontSize: '11.5px', fontWeight: 900 };
+
+    const shopTabDefs = [
+      { id: 'featured', label: 'Featured', icon: '⭐', c: ['#A9F252', '#5FC71F', '#1E5A0C'] },
+      { id: 'boosts', label: 'Boosts', icon: '⚡', c: ['#5FA8F5', '#2F7BD6', '#133D75'] },
+      { id: 'brainrots', label: 'Brainrots', icon: '👾', c: ['#C468F5', '#9333DB', '#4A1177'] },
+      { id: 'gamepasses', label: 'Passes', icon: '👑', c: ['#F5C64A', '#E09A18', '#8A5A08'] }
+    ];
+    const shopTabs = shopTabDefs.map(function (t) {
+      return {
+        label: t.label, icon: t.icon, labelStyle: labelStyle,
+        style: self.vTab(s.shopTab === t.id, t.c),
+        onClick: function () { self.setState({ shopTab: t.id }); }
+      };
+    });
+
+    const settingsTabDefs = [
+      { id: 'general', label: 'General', icon: '⚙️' },
+      { id: 'graphics', label: 'Graphics', icon: '🖥️' },
+      { id: 'audio', label: 'Audio', icon: '🔊' },
+      { id: 'controls', label: 'Controls', icon: '🎮' },
+      { id: 'about', label: 'About', icon: 'ℹ️' }
+    ];
+    const settingsTabs = settingsTabDefs.map(function (t) {
+      return {
+        label: t.label, icon: t.icon, labelStyle: { fontSize: '10.5px', fontWeight: 900 },
+        style: self.vTab(s.settingsTab === t.id, ['#A9F252', '#5FC71F', '#1E5A0C'],
+          s.settingsTab === t.id ? { color: '#123A08', textShadow: '0 1px 0 rgba(255,255,255,.35)' } : {}),
+        onClick: function () { self.setState({ settingsTab: t.id }); }
+      };
+    });
+
+    const featuredCards = [
+      { name: 'Diamond Nyan Cat', badge: 'LIMITED!', bBg: '#E23B2E', bDark: '#6E140C', l: '#F0B540', b: '#C88A14', d: '#7A5408', tint: 'rgba(255,235,180,.28)', price: '499' },
+      { name: 'Meme Crate', badge: 'HOT!', bBg: '#F06A22', bDark: '#7A2E08', l: '#B865EC', b: '#8F35DE', d: '#4A1177', tint: 'rgba(230,190,255,.28)', price: '199' },
+      { name: 'Lucky Spin', badge: 'NEW!', bBg: '#38B02E', bDark: '#124A0C', l: '#5FA8F5', b: '#2F7BD6', d: '#133D75', tint: 'rgba(190,220,255,.3)', price: '99' }
+    ].map(function (c) {
+      return {
+        name: c.name, price: c.price, badge: c.badge,
+        badgeStyle: {
+          background: c.bBg, border: '2px solid ' + c.bDark, borderRadius: '7px',
+          padding: '2px 8px', color: '#fff', fontWeight: 900, fontSize: '10.5px',
+          letterSpacing: '.5px', alignSelf: 'flex-start', textShadow: '0 1px 0 rgba(0,0,0,.35)'
+        },
+        style: {
+          background: 'linear-gradient(180deg,' + c.l + ',' + c.b + ')',
+          border: '3px solid ' + c.d, borderRadius: '14px', padding: '11px',
+          boxShadow: 'inset 0 2px 0 rgba(255,255,255,.22), 0 3px 0 ' + c.d,
+          display: 'flex', gap: '12px', cursor: 'pointer', minHeight: '78px'
+        },
+        artStyle: {
+          width: '58px', height: '58px', background: c.tint, alignSelf: 'center',
+          border: '2.5px solid rgba(0,0,0,.28)', borderRadius: '10px', flexShrink: 0,
+          boxShadow: 'inset 0 3px 8px rgba(0,0,0,.3)'
+        }
+      };
+    });
+
+    const dailyDeals = [
+      { name: 'Cash Bundle (Small)', sub: '$5,000', price: '49' },
+      { name: 'XP Boost (30 Min)', sub: '2x XP', price: '29' },
+      { name: 'Lucky Boost (15 Min)', sub: '2x Luck', price: '39' }
+    ];
+
+    const bestValue = [
+      { name: 'Starter Pack', cash: '$50,000', price: '199', l: '#5FA8F5', b: '#2F7BD6', d: '#133D75' },
+      { name: 'Popular Pack', cash: '$250,000', price: '799', l: '#5FA8F5', b: '#2F7BD6', d: '#133D75' },
+      { name: 'Mega Pack', cash: '$5,000,000', price: '9,999', badge: 'MOST POPULAR', bBg: '#F09A18', bDark: '#7A4E08', l: '#B865EC', b: '#8F35DE', d: '#4A1177' },
+      { name: 'Ultra Pack', cash: '$25,000,000', price: '39,999', badge: 'BEST DEAL!', bBg: '#E23B2E', bDark: '#6E140C', l: '#F06A50', b: '#C93424', d: '#6E140C' }
+    ].map(function (p) {
+      return {
+        name: p.name, cash: p.cash, price: p.price, badge: p.badge || '',
+        badgeStyle: p.badge ? {
+          background: p.bBg, border: '2px solid ' + p.bDark, borderRadius: '7px',
+          padding: '2px 8px', color: '#fff', fontWeight: 900, fontSize: '9.5px',
+          letterSpacing: '.4px', alignSelf: 'center', marginBottom: '6px',
+          textShadow: '0 1px 0 rgba(0,0,0,.35)', whiteSpace: 'nowrap'
+        } : null,
+        style: {
+          background: 'linear-gradient(180deg,' + p.l + ',' + p.b + ')',
+          border: '3px solid ' + p.d, borderRadius: '14px', padding: '12px 10px',
+          boxShadow: 'inset 0 2px 0 rgba(255,255,255,.22), 0 3px 0 ' + p.d,
+          display: 'flex', flexDirection: 'column', cursor: 'pointer'
+        }
+      };
+    });
+
+    const rewards = [
+      { icon: 'XP', value: '+25%', label: 'XP Boost', c: '#8FC4FF', bg: 'linear-gradient(180deg,#5FA8F5,#2F7BD6)', d: '#133D75' },
+      { icon: '🍀', value: '+25%', label: 'Luck Boost', c: '#9BF04F', bg: 'linear-gradient(180deg,#4FAE3C,#2F8226)', d: '#12480E' },
+      { icon: '$', value: '+10%', label: 'Cash Boost', c: '#FFC93C', bg: 'linear-gradient(180deg,#F0B540,#C88A14)', d: '#7A5408' }
+    ].map(function (r) {
+      return {
+        icon: r.icon, value: r.value, label: r.label,
+        iconStyle: {
+          width: '40px', height: '40px', borderRadius: '10px', background: r.bg,
+          border: '2.5px solid ' + r.d, display: 'flex', alignItems: 'center',
+          justifyContent: 'center', fontWeight: 900, fontSize: r.icon.length > 1 ? '13px' : '17px',
+          color: '#fff', textShadow: '0 1.5px 0 rgba(0,0,0,.35)', flexShrink: 0,
+          boxShadow: 'inset 0 2px 0 rgba(255,255,255,.35)'
+        },
+        valStyle: { fontWeight: 900, fontSize: '16px', color: r.c, textShadow: '0 1.5px 0 rgba(0,0,0,.4)' }
+      };
+    });
+
+    const generalDefs = [
+      { key: 'dmg', label: 'Show Damage Numbers' },
+      { key: 'others', label: 'Show Other Players' },
+      { key: 'names', label: 'Show Player Names' },
+      { key: 'pets', label: 'Show Pets / Brainrots' },
+      { key: 'hideOthers', label: "Hide Others' Pets / Brainrots" },
+      { key: 'shake', label: 'Screen Shake' },
+      { key: 'camfx', label: 'Camera Effects' },
+      { key: 'popups', label: 'Event Popups' }
+    ];
+    const generalRows = generalDefs.map(function (d) {
+      return Object.assign({ label: d.label }, self.toggleParts(s.toggles[d.key], d.key));
+    });
+
+    const sliderDefs = [
+      { key: 'master', label: 'Master Volume' },
+      { key: 'music', label: 'Music Volume' },
+      { key: 'sfx', label: 'SFX Volume' },
+      { key: 'ui', label: 'UI Volume' },
+      { key: 'ambient', label: 'Ambient Volume' }
+    ];
+    const audioSliders = sliderDefs.map(function (d) {
+      const pct = s.sliders[d.key];
+      return {
+        label: d.label, pctLabel: pct + '%',
+        fillStyle: {
+          position: 'absolute', top: '2px', left: '2px', bottom: '2px',
+          width: 'calc(' + pct + '% - 4px)', minWidth: '10px',
+          background: 'linear-gradient(180deg,#9BF04F,#5FC71F)', borderRadius: '8px', transition: 'width .1s'
+        },
+        knobStyle: {
+          position: 'absolute', top: '50%', left: pct + '%', transform: 'translate(-50%,-50%)',
+          width: '30px', height: '30px', background: 'linear-gradient(180deg,#B9F97A,#7FDC38)',
+          border: '2.5px solid #1E5A0C', borderRadius: '9px',
+          boxShadow: 'inset 0 2px 0 rgba(255,255,255,.5), 0 2px 0 rgba(0,0,0,.35)',
+          transition: 'left .1s', pointerEvents: 'none'
+        },
+        onClick: function (e) {
+          const rect = e.currentTarget.getBoundingClientRect();
+          let p = Math.round(((e.clientX - rect.left) / rect.width) * 100);
+          p = Math.max(0, Math.min(100, Math.round(p / 5) * 5));
+          self.setState(function (st) {
+            const sl = Object.assign({}, st.sliders);
+            sl[d.key] = p;
+            return { sliders: sl };
+          });
+        }
+      };
+    });
+
+    const shopLabels = { boosts: 'Boosts tab', brainrots: 'Brainrots tab', gamepasses: 'Gamepasses tab' };
+    const settingsLabels = { graphics: 'Graphics tab', controls: 'Controls tab', about: 'About tab' };
+
+    return {
+      shopTabs: shopTabs, settingsTabs: settingsTabs,
+      isFeatured: s.shopTab === 'featured',
+      isOtherTab: s.shopTab !== 'featured',
+      otherTabLabel: shopLabels[s.shopTab] || '',
+      featuredCards: featuredCards, dailyDeals: dailyDeals, bestValue: bestValue, rewards: rewards,
+      isGeneral: s.settingsTab === 'general',
+      isAudio: s.settingsTab === 'audio',
+      isOtherSettings: s.settingsTab !== 'general' && s.settingsTab !== 'audio',
+      otherSettingsLabel: settingsLabels[s.settingsTab] || '',
+      generalRows: generalRows, audioSliders: audioSliders
+    };
+  }
+}
+</script>
+</body>
+</html>
